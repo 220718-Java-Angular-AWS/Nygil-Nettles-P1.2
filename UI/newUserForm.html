@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>New User Login</title>
+</head>
+
+<body>
+    <h1>New User Form</h1>
+    Username: <input type="text" id="username" required><br>
+    Email: <input type="text" id="email" required><br>
+    Password: <input type="password" id="password" required><br>
+    <button onclick="createNewUser()">Add New User</button>
+</body>
+
+<script>
+    async function createNewUser() {
+
+        let user = {
+            username: document.getElementById("username").value,
+            email: document.getElementById("email").value,
+            password: document.getElementById("password").value
+        }
+
+        let url = 'http://localhost:8080/EmployeeReimbursementSystem/users';
+
+        let response = await fetch (url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+            },
+
+            body: JSON.stringify(user)
+        });
+
+        if (response.status == 200) {
+            alert("Success!");
+            window.location.href = "userLogin.html";
+        } else {
+            alert("Something went wrong...");
+        }
+    }
+
+
+</script>
+</html>

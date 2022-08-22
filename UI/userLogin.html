@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+
+<body>
+    <label>Username: </label>
+    <input type="text" id="username" name="username" />
+    <br>
+    <label>Password: </label>
+    <input type="password" id="password" name="password" />
+    <button onclick="auth()">Login</button>
+
+
+</body>
+<script>
+    async function auth() {
+        let user = {
+            username: document.getElementById("username").value,
+            password: document.getElementById("password").value
+        }
+        let url = 'http://localhost:8080/EmployeeReimbursementSystem/auth';
+
+        let response = await fetch(url, {
+            method: 'GET',
+            body: JSON.stringify(user)
+        });
+        if (response.status == 200) {
+            alert("Login successful!");
+        }
+
+  
+
+ 
+    }
+</script>
+
+</html>

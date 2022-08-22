@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta>
+    <meta>
+    <meta>
+    <title>View Tasks</title>
+    <style>
+        .task {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+        }
+
+        .taskHeading {
+            font-weight: bold;
+        }
+
+        .taskLine {
+            font-style: italic;
+        }
+
+        #taskList {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            align-items: flex-start;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="taskList"></div>
+
+</body>
+
+<script>
+
+(async function getTasksForUser(userId) {
+    let url = 'http://localhost:8080/EmployeeReimbursementSystem/reimbursements?user-id=' + userId;
+    let response = await fetch(url, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8'
+        }
+    });
+
+    let array = response.json();
+
+    let htmlElement = document.getElementById('reimbursementList');
+
+    for (let i = 0; i < array.length; i++) {
+        let reimbursement = array[i];
+
+        htmlElement.innerHTML += '<div id="task' + i + '">';
+        let reimbursementElement = document.getElementById('task' + i);
+        reimbursementElement.innerHTML += '<div class="reimbursementHeading"> Type: ' + reimbursement.type + '</div>';
+        reimbursementElement.innerHTML += '<div class="reimbursementLine"> Message: ' + reimbursement.message + '</div>';
+        reimbursementElement.innerHTML += '<div class="reimbursementLine"> Approved: ' + reimbursement.approved + '</div>';
+        htmlElement.innerHTML += '</div>';
+    }
+
+}) (1);
+
+(function otherFunction() {
+    console.log("hello");
+})
+
+
+</script>
+
+
+</html>
