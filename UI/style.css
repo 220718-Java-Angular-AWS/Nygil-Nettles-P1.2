@@ -1,0 +1,18 @@
+body {
+    background-color: powderblue;
+}
+
+.main {
+    text-align: center;
+}
+
+.h1 {
+    color: #090;
+    font-size: 50px;
+    font-weight: bold;
+}
+
+#greeting {
+    font-style: bold;
+    font-size: 20px;
+}
